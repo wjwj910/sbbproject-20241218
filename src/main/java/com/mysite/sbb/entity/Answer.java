@@ -28,6 +28,7 @@ public class Answer {
         AnswerDto dto = new AnswerDto();
         dto.setId(this.id);
         dto.setContent(this.content);
+        dto.setCreateDate(this.createDate);
         dto.setQuestionId(this.question.getId());
         return dto;
     }
