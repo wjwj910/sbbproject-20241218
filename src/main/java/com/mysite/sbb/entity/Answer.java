@@ -1,8 +1,9 @@
-package com.mysite.sbb;
+package com.mysite.sbb.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import com.mysite.sbb.dto.AnswerDto;
 
 import java.time.LocalDateTime;
 
@@ -21,4 +22,13 @@ public class Answer {
 
     @ManyToOne
     private Question question;
+
+    // DTO로 변환하는 메서드
+    public AnswerDto toDto() {
+        AnswerDto dto = new AnswerDto();
+        dto.setId(this.id);
+        dto.setContent(this.content);
+        dto.setQuestionId(this.question.getId());
+        return dto;
+    }
 }

@@ -1,8 +1,9 @@
-package com.mysite.sbb;
+package com.mysite.sbb.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import com.mysite.sbb.dto.QuestionDto;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -25,4 +26,15 @@ public class Question {
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Answer> answerList;
+
+    // DTO로 변환하는 메서드
+    public QuestionDto toDto() {
+        QuestionDto dto = new QuestionDto();
+        dto.setId(this.id);
+        dto.setSubject(this.subject);
+        dto.setContent(this.content);
+        dto.setCreateDate(this.createDate);
+        dto.setAnswerList(this.answerList.stream().map(Answer::toDto).toList());
+        return dto;
+    }
 }
