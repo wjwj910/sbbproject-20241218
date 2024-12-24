@@ -1,9 +1,9 @@
 package com.mysite.sbb.entity;
 
+import com.mysite.sbb.user.SiteUser;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import com.mysite.sbb.dto.AnswerDto;
 
 import java.time.LocalDateTime;
 
@@ -23,6 +23,9 @@ public class Answer {
     @ManyToOne
     private Question question;
 
+    @ManyToOne
+    private SiteUser author;
+    /*
     // DTO로 변환하는 메서드
     public AnswerDto toDto() {
         AnswerDto dto = new AnswerDto();
@@ -32,4 +35,5 @@ public class Answer {
         dto.setQuestionId(this.question.getId());
         return dto;
     }
+    */
 }
